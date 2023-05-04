@@ -334,6 +334,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5169182614641876646}
+  - component: {fileID: 2050494854}
+  - component: {fileID: 2050494855}
+  - component: {fileID: 2050494857}
   m_Layer: 0
   m_Name: PlayerSubmarine
   m_TagString: Untagged
@@ -358,3 +361,137 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2050494854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8551552129635382254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71795c66f40269c4aa5492440d1c6d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanMove: 1
+  CanControl: 1
+  Defalut_SubMoveForwardSpeed: 2
+  Defalut_SubMoveSidewaySpeed: 3
+  Turrent_Root: {fileID: 2343711994042729795}
+  Defalut_TurrentRotationSpeed: 50
+--- !u!114 &2050494855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8551552129635382254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556c9eb084ed3654f8fe3b2ab055529c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SteerSubInput:
+    m_Name: Steer Sub Input
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: efaba6f7-d0f5-40b7-8101-276d86c074e3
+    m_Processors: 
+    m_Interactions: Hold
+    m_SingletonActionBindings:
+    - m_Name: Keyboard
+      m_Id: 331667bc-61cb-468d-9c81-ddb40780f8e6
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Steer Sub Input
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 8dcbbd5d-bc54-4adb-b5e8-bd784601f2c7
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Steer Sub Input
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 718c1fee-f7b4-4c46-b85a-9dceb16554cd
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Steer Sub Input
+      m_Flags: 8
+    - m_Name: Joystick
+      m_Id: 26e78833-d526-4668-b642-cf4f809af28b
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Steer Sub Input
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 49644e9b-3a14-4f84-b163-f3a86504758c
+      m_Path: <Gamepad>/leftStick/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Steer Sub Input
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 0bd2fbbf-b2d6-4591-873c-ee1bced37f62
+      m_Path: <Gamepad>/leftStick/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Steer Sub Input
+      m_Flags: 8
+    m_Flags: 0
+  SubControllerScript: {fileID: 2050494854}
+--- !u!114 &2050494857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8551552129635382254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 438778c7adb43024792b2c023bcc6459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotateTurrentInput:
+    m_Name: Rotate Turrent Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ab63c4f7-d32d-4e35-b406-bd66afb85b8a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: 905ef475-1526-464e-ba4a-e1793485f97a
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotate Turrent Input
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: d02aa006-1446-40ad-b2fb-512c6ed4afbd
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotate Turrent Input
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 10cae4ad-1c31-4fe7-9574-faa89007c693
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotate Turrent Input
+      m_Flags: 8
+    m_Flags: 0
+  SubControllerScript: {fileID: 2050494854}

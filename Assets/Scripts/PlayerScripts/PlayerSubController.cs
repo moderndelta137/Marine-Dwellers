@@ -4,21 +4,30 @@ using UnityEngine;
 
 public class PlayerSubController : MonoBehaviour
 {
+    [Header("Common")]
+    public bool CanMove; //Use to determine if the sub can move at all;
+    public bool CanControl; // Use to determine if the player can control the movement of the sub;
+    [Header("Pilot")]
     public float Defalut_SubMoveForwardSpeed;
     private float actual_SubMoveForwardSpeed;
     public float Defalut_SubMoveSidewaySpeed;
     private float actual_SubMoveSidewaySpeed;
-    public bool CanMove; //Use to determine if the sub can move at all;
-    public bool CanControl; // Use to determine if the player can control the movement of the sub;
+	[Header("Turret")]
+    public GameObject Turret_Root;
+    public float Defalut_TurretRotationSpeed;
+    private float actual_TurretRotationSpeed;
+    private float current_TurretAngle;
 
     // Start is called before the first frame update
     void Start()
     {
+        CanMove=true;
+        CanControl=true;
         //Initialize
         actual_SubMoveForwardSpeed=Defalut_SubMoveForwardSpeed;
         actual_SubMoveSidewaySpeed=Defalut_SubMoveSidewaySpeed;
-        CanMove=true;
-        CanControl=true;
+        actual_TurretRotationSpeed=Defalut_TurretRotationSpeed;
+
     }
 
     // Update is called once per frame
@@ -27,10 +36,6 @@ public class PlayerSubController : MonoBehaviour
         if(CanMove)
         {
             MoveSubForward();
-            if(CanControl)
-            {
-                this.gameObject.transform.Translate(Vector3.up*Input.GetAxis("Vertical")*actual_SubMoveSidewaySpeed*Time.deltaTime,Space.Self);
-            }
         }
     }
 
@@ -38,5 +43,22 @@ public class PlayerSubController : MonoBehaviour
     private void MoveSubForward()
     {
         this.gameObject.transform.Translate(Vector3.right*actual_SubMoveForwardSpeed*Time.deltaTime,Space.Self);
+    }
+
+    // Steering the Sub up an down is by calling this function from the PlayerPilotController Script.
+    public void SteerSub(float InputAxisValue)
+    {
+        if(CanControl)
+        {
+            this.gameObject.transform.Translate(Vector3.up*InputAxisValue*actual_SubMoveSidewaySpeed*Time.deltaTime,Space.Self);
+        }
+    }
+
+    public void RotateTurrent(float InputAxisValue)
+    {
+        if(CanControl)
+        {
+            Turret_Root.transform.Rotate(Vector3.forward*InputAxisValue*actual_TurretRotationSpeed*Time.deltaTime,Space.Self);
+        }
     }
 }
