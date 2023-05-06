@@ -7,6 +7,7 @@ public class PlayerPilotController : MonoBehaviour
 {
     public InputAction SteerSubInput; // Using the new Unity Input Action System.
     public PlayerSubController SubControllerScript;
+    private bool isPowerCellIncerted;
     // Start is called before the first frame update
    
     void Awake()
@@ -36,5 +37,12 @@ public class PlayerPilotController : MonoBehaviour
     public void OnDisable()
     {
         SteerSubInput.Disable();
+    }
+
+    public void InsertPowerCell()
+    {
+        //called when powercell is inserted;
+        isPowerCellIncerted=true;
+        //TODO: power up the sub function with the powercell.
     }
 }
