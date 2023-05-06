@@ -8,11 +8,13 @@ public class BatScript : MonoBehaviour
 {
     [SerializeField] Slider energyDisplay;
 
+    GameObject connectedCell;
+
     bool grabbed = false;
     bool connected = false;
 
     float drainMultiplier = 10f;
-    float maxEnergy = 100;
+    public float maxEnergy = 100;
     public float energy;
 
     // Start is called before the first frame update
@@ -29,11 +31,12 @@ public class BatScript : MonoBehaviour
         {
             transform.position = Mouse.current.position.ReadValue();
         }
-        if (connected)
+        if (connected && !string.Equals(connectedCell.GetComponent<CellSlotScript>().slotType, "Charge"))
         {
             energy -= Time.deltaTime*drainMultiplier;
             if (energy <= 0)
             {
+                PowerManager.DisablePoweredState(connectedCell.GetComponent<CellSlotScript>().slotType);
                 energy = 0;
             }
         }
@@ -42,12 +45,26 @@ public class BatScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Slot")
         {
+            connectedCell = collision.gameObject;
+            PowerManager.EnablePoweredState(connectedCell.GetComponent<CellSlotScript>().slotType);
             grabbed = false;
             connected = true;
         }
     }
     public void OnGrab()
     {
+        if (connectedCell != null)
+        {
+            if (connectedCell.GetComponent<CellSlotScript>().slotType == "Charge")
+            {
+                print("break");
+                PowerManager.chargerBattery = null;
+            }
+            connectedCell.GetComponent<CellSlotScript>().batteryConnected = false;
+            connectedCell.GetComponent<CellSlotScript>().connectedBattery = null;
+            PowerManager.DisablePoweredState(connectedCell.GetComponent<CellSlotScript>().slotType);
+        }
+        connectedCell = null;
         connected = false;
         grabbed = true;
     }
