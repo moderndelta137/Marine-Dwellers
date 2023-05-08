@@ -33,7 +33,7 @@ public class BatScript : MonoBehaviour
         }
         if (connected && !string.Equals(connectedCell.GetComponent<CellSlotScript>().slotType, "Charge"))
         {
-            energy -= Time.deltaTime*drainMultiplier;
+            //energy -= Time.deltaTime*drainMultiplier;
             if (energy <= 0)
             {
                 PowerManager.DisablePoweredState(connectedCell.GetComponent<CellSlotScript>().slotType);
@@ -46,7 +46,7 @@ public class BatScript : MonoBehaviour
         if (collision.gameObject.tag == "Slot")
         {
             connectedCell = collision.gameObject;
-            PowerManager.EnablePoweredState(connectedCell.GetComponent<CellSlotScript>().slotType);
+            PowerManager.EnablePoweredState(connectedCell.GetComponent<CellSlotScript>().slotType,this);
             grabbed = false;
             connected = true;
         }
@@ -71,5 +71,11 @@ public class BatScript : MonoBehaviour
     public void OnRelease()
     {
         grabbed = false;
+    }
+
+    //Allow other script to set the drain rate for different slot.
+    public void DrainPower(float drainRate)
+    {
+        energy -= drainRate;
     }
 }

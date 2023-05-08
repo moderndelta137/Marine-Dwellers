@@ -17,6 +17,7 @@ public class PlayerSubController : MonoBehaviour
     public float Defalut_TurretRotationSpeed;
     private float actual_TurretRotationSpeed;
     private float current_TurretAngle;
+    public GameObject TurretCollider_Root;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,7 @@ public class PlayerSubController : MonoBehaviour
         actual_SubMoveForwardSpeed=Defalut_SubMoveForwardSpeed;
         actual_SubMoveSidewaySpeed=Defalut_SubMoveSidewaySpeed;
         actual_TurretRotationSpeed=Defalut_TurretRotationSpeed;
-
+        TurretCollider_Root.SetActive(false);
     }
 
     // Update is called once per frame
@@ -45,7 +46,7 @@ public class PlayerSubController : MonoBehaviour
         this.gameObject.transform.Translate(Vector3.right*actual_SubMoveForwardSpeed*Time.deltaTime,Space.Self);
     }
 
-    // Steering the Sub up an down is by calling this function from the PlayerPilotController Script.
+    // Steering the Sub up and down by calling this function from the PlayerPilotController Script.
     public void SteerSub(float InputAxisValue)
     {
         if(CanControl)
@@ -54,11 +55,24 @@ public class PlayerSubController : MonoBehaviour
         }
     }
 
-    public void RotateTurrent(float InputAxisValue)
+    // Rotate the turret clockwise or counter-clockwise by calling this function from the PlayerGunnerController Script.
+    public void RotateTurret(float InputAxisValue)
     {
         if(CanControl)
         {
             Turret_Root.transform.Rotate(Vector3.forward*InputAxisValue*actual_TurretRotationSpeed*Time.deltaTime,Space.Self);
         }
+    }
+
+    // Turn the turret on and off when pressing and releasing the fire turret button.
+    public void TurnOnTurret()
+    {
+        TurretCollider_Root.SetActive(true);
+        Debug.Log("Turret Firing");
+    }
+
+    public void TurnOffTurret()
+    {
+        TurretCollider_Root.SetActive(false);
     }
 }

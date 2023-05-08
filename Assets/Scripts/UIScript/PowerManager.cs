@@ -12,6 +12,8 @@ public class PowerManager : MonoBehaviour
     //Variables controlling power states
     public static bool canMove, canGun, canLight, canCharge;
 
+    //Reference to other control scripts
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,7 @@ public class PowerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(chargerBattery);
+        //print(chargerBattery);
         if (chargerBattery != null)
         {
             print("ischarging");
@@ -36,7 +38,7 @@ public class PowerManager : MonoBehaviour
         print("Light: " + canLight);
         print("Charge: " + canCharge);*/
     }
-    public static void EnablePoweredState(string slotType)
+    public static void EnablePoweredState(string slotType,BatScript BatteryScript)
     {
         //Variables that control whether a control is powered or not
         switch (slotType)
@@ -46,6 +48,8 @@ public class PowerManager : MonoBehaviour
                 break;
             case "Gun":
                 canGun = true;
+                Debug.Log("Gun Slot-in");
+                PlayerGunnerController.InsertPowerCell(BatteryScript);
                 break;
             case "Light":
                 canLight = true;
@@ -64,6 +68,7 @@ public class PowerManager : MonoBehaviour
                 break;
             case "Gun":
                 canGun = false;
+                PlayerGunnerController.RemovePowerCell();
                 break;
             case "Light":
                 canLight = false;
