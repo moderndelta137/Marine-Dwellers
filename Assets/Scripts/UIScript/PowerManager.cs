@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerManager : MonoBehaviour
 {
-    float rechargeRate = 10;
+    float rechargeRate = 30;
 
     public static GameObject chargerBattery;
     public static bool charging;
@@ -45,6 +45,8 @@ public class PowerManager : MonoBehaviour
         {
             case "Move":
                 canMove = true;
+                Debug.Log("Thruster Slot-in");
+                PlayerPilotController.InsertPowerCell(BatteryScript);
                 break;
             case "Gun":
                 canGun = true;
@@ -65,6 +67,7 @@ public class PowerManager : MonoBehaviour
         {
             case "Move":
                 canMove = false;
+                PlayerPilotController.RemovePowerCell();
                 break;
             case "Gun":
                 canGun = false;

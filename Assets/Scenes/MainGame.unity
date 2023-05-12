@@ -493,6 +493,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8551552129635382254, guid: 695717244f67ddc4abe834efd3ac4a04, type: 3}
   m_PrefabInstance: {fileID: 4129036868462558311}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2050494855 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2050494854, guid: 695717244f67ddc4abe834efd3ac4a04, type: 3}
+  m_PrefabInstance: {fileID: 4129036868462558311}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050494852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71795c66f40269c4aa5492440d1c6d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3494511605824187413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -500,6 +511,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 142570938, guid: 63a0ad01ee88770449099a09b4cf712e, type: 3}
+      propertyPath: PlayerSubScript
+      value: 
+      objectReference: {fileID: 2050494855}
     - target: {fileID: 971989282872985215, guid: 63a0ad01ee88770449099a09b4cf712e, type: 3}
       propertyPath: m_Pivot.x
       value: 0

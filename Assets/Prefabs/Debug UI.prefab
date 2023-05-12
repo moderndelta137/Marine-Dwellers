@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 45803604}
   - component: {fileID: 45803603}
   m_Layer: 5
-  m_Name: ControlSchemeText (TMP) (3)
+  m_Name: Turret Angle Text (TMP) (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 380887920}
   - component: {fileID: 380887919}
   m_Layer: 5
-  m_Name: ControlSchemeText (TMP) (4)
+  m_Name: Velocity Text (TMP) (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 894904581}
   - component: {fileID: 894904580}
   m_Layer: 5
-  m_Name: ControlSchemeText (TMP) (4)
+  m_Name: Turret Angle Text (TMP) (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -702,7 +702,7 @@ GameObject:
   - component: {fileID: 923734129}
   - component: {fileID: 923734128}
   m_Layer: 5
-  m_Name: ControlSchemeText (TMP) (2)
+  m_Name: Velocity Text (TMP) (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -838,7 +838,7 @@ GameObject:
   - component: {fileID: 1000087735}
   - component: {fileID: 1000087734}
   m_Layer: 5
-  m_Name: ControlSchemeText (TMP) (3)
+  m_Name: Position Text (TMP) (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1111,7 +1111,7 @@ GameObject:
   - component: {fileID: 1848754169}
   - component: {fileID: 1848754168}
   m_Layer: 5
-  m_Name: ControlSchemeText (TMP) (1)
+  m_Name: Position Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1818,3 +1818,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   DebugInfoRoot: {fileID: 4865540507242897293}
+  PlayerSubScript: {fileID: 0}
+  PositionText: {fileID: 1000087734}
+  VelocityText: {fileID: 380887919}
+  TurretAngleText: {fileID: 894904580}

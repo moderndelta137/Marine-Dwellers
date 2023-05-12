@@ -9,7 +9,7 @@ public class PlayerSubController : MonoBehaviour
     public bool CanControl; // Use to determine if the player can control the movement of the sub;
     [Header("Pilot")]
     public float Defalut_SubMoveForwardSpeed;
-    private float actual_SubMoveForwardSpeed;
+    public float Actual_SubMoveForwardSpeed;
     public float Defalut_SubMoveSidewaySpeed;
     private float actual_SubMoveSidewaySpeed;
 	[Header("Turret")]
@@ -25,7 +25,7 @@ public class PlayerSubController : MonoBehaviour
         CanMove=true;
         CanControl=true;
         //Initialize
-        actual_SubMoveForwardSpeed=Defalut_SubMoveForwardSpeed;
+        Actual_SubMoveForwardSpeed=Defalut_SubMoveForwardSpeed;
         actual_SubMoveSidewaySpeed=Defalut_SubMoveSidewaySpeed;
         actual_TurretRotationSpeed=Defalut_TurretRotationSpeed;
         TurretCollider_Root.SetActive(false);
@@ -43,7 +43,7 @@ public class PlayerSubController : MonoBehaviour
     // Make the sub move forward every frame
     private void MoveSubForward()
     {
-        this.gameObject.transform.Translate(Vector3.right*actual_SubMoveForwardSpeed*Time.deltaTime,Space.Self);
+        this.gameObject.transform.Translate(Vector3.right*Actual_SubMoveForwardSpeed*Time.deltaTime,Space.Self);
     }
 
     // Steering the Sub up and down by calling this function from the PlayerPilotController Script.
@@ -62,6 +62,17 @@ public class PlayerSubController : MonoBehaviour
         {
             Turret_Root.transform.Rotate(Vector3.forward*InputAxisValue*actual_TurretRotationSpeed*Time.deltaTime,Space.Self);
         }
+    }
+
+    // Turn the thruster on and off the make the sub move faster.
+    public void TurnOnThruster()
+    {
+        Actual_SubMoveForwardSpeed = Defalut_SubMoveForwardSpeed * 2f;
+    }
+
+    public void TurnOffThruster()
+    {
+        Actual_SubMoveForwardSpeed = Defalut_SubMoveForwardSpeed;
     }
 
     // Turn the turret on and off when pressing and releasing the fire turret button.

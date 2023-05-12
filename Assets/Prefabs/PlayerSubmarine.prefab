@@ -747,6 +747,7 @@ MonoBehaviour:
   CanMove: 1
   CanControl: 1
   Defalut_SubMoveForwardSpeed: 2
+  Actual_SubMoveForwardSpeed: 0
   Defalut_SubMoveSidewaySpeed: 3
   Turret_Root: {fileID: 2343711994042729795}
   Defalut_TurretRotationSpeed: 50
@@ -820,7 +821,7 @@ MonoBehaviour:
       m_Action: Steer Sub Input
       m_Flags: 8
     m_Flags: 0
-  SubControllerScript: {fileID: 2050494854}
+  ThrusterPowerDrainRate: 0.03
 --- !u!114 &2050494857
 MonoBehaviour:
   m_ObjectHideFlags: 0

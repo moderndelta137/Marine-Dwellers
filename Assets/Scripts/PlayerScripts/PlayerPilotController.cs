@@ -6,8 +6,11 @@ using UnityEngine.InputSystem; // Needed to use the Input Action System
 public class PlayerPilotController : MonoBehaviour
 {
     public InputAction SteerSubInput; // Using the new Unity Input Action System.
-    public PlayerSubController SubControllerScript;
-    private bool isPowerCellIncerted;
+    public static PlayerSubController SubControllerScript;
+    private static bool isThrusterPowered;
+    private static BatScript powerCell_Script;
+    public float ThrusterPowerDrainRate;
+
     // Start is called before the first frame update
    
     void Awake()
@@ -27,6 +30,16 @@ public class PlayerPilotController : MonoBehaviour
             //Call the PlayerSubController function to actually move the Sub up and down.
             SubControllerScript.SteerSub(SteerSubInput.ReadValue<float>());
         }
+
+        if(isThrusterPowered)
+        {
+            powerCell_Script.DrainPower(ThrusterPowerDrainRate);
+            if(powerCell_Script.energy<=0)
+            {
+                RemovePowerCell();
+                SubControllerScript.TurnOffThruster();
+            }
+        }
     }
 
     public void OnEnable()
@@ -39,10 +52,19 @@ public class PlayerPilotController : MonoBehaviour
         SteerSubInput.Disable();
     }
 
-    public void InsertPowerCell()
+    public static void InsertPowerCell(BatScript inserted_PowerCell)
     {
         //called when powercell is inserted;
-        isPowerCellIncerted=true;
+        isThrusterPowered=true;
+        powerCell_Script = inserted_PowerCell;
+        SubControllerScript.TurnOnThruster();
+
         //TODO: power up the sub function with the powercell.
+    }
+        public static void RemovePowerCell()
+    {
+        isThrusterPowered=false;
+        powerCell_Script = null;
+        SubControllerScript.TurnOffThruster();
     }
 }

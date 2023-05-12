@@ -9,7 +9,7 @@ public class PlayerGunnerController : MonoBehaviour
     public InputAction FireTurretInput;
     public PlayerSubController SubControllerScript;
     private static BatScript powerCell_Script;
-    public static bool TurretPowered;
+    private static bool isTurretPowered;
     public float TurretPowerDrainRate;
 
 
@@ -20,7 +20,7 @@ public class PlayerGunnerController : MonoBehaviour
     }
     void Start()
     {
-        TurretPowered=false;
+        isTurretPowered=false;
     }
 
     // Update is called once per frame
@@ -35,7 +35,7 @@ public class PlayerGunnerController : MonoBehaviour
         //Fire Turrent
         if (FireTurretInput.IsPressed())
         {
-            if(TurretPowered)
+            if(isTurretPowered)
             {
                 SubControllerScript.TurnOnTurret();
                 powerCell_Script.DrainPower(TurretPowerDrainRate);
@@ -65,12 +65,12 @@ public class PlayerGunnerController : MonoBehaviour
 
     public static void InsertPowerCell(BatScript inserted_PowerCell)
     {
-        TurretPowered=true;
+        isTurretPowered=true;
         powerCell_Script = inserted_PowerCell;
     }
     public static void RemovePowerCell()
     {
-        TurretPowered=false;
+        isTurretPowered=false;
         powerCell_Script = null;
     }
 }
