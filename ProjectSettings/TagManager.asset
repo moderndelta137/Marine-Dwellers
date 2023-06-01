@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Slot
   - Bat
+  - Obstacle
+  - Enemy
   layers:
   - Default
   - TransparentFX

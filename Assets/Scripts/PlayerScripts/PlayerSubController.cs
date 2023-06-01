@@ -18,6 +18,15 @@ public class PlayerSubController : MonoBehaviour
     private float actual_TurretRotationSpeed;
     private float current_TurretAngle;
     public GameObject TurretCollider_Root;
+    [Header("Collision")]
+    private BoxCollider subCollider;
+    public float Knockback_Distance;
+    public float Knockback_Timer;
+    [Header("Status")]
+    public int Sub_HP;
+    public int Max_Sub_HP;
+    public int ObstacleDamage;
+    public int EnemyDamage;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +38,8 @@ public class PlayerSubController : MonoBehaviour
         actual_SubMoveSidewaySpeed=Defalut_SubMoveSidewaySpeed;
         actual_TurretRotationSpeed=Defalut_TurretRotationSpeed;
         TurretCollider_Root.SetActive(false);
+        subCollider = GetComponent<BoxCollider>();
+        Sub_HP = Max_Sub_HP;
     }
 
     // Update is called once per frame
@@ -86,4 +97,41 @@ public class PlayerSubController : MonoBehaviour
     {
         TurretCollider_Root.SetActive(false);
     }
+
+    //Collision detection for hitting obstacles and enemies
+    void OnCollisionEnter(Collision other) {
+        if(other.gameObject.CompareTag("Obstacle"))
+        {
+            //Knockback the sub for a distance when it gets hit.
+            this.gameObject.transform.Translate(other.GetContact(0).normal*Knockback_Distance);
+            //Reduce sub's hp
+            ReduceSubHP(ObstacleDamage);
+            //Disable the sub's movement for a short period of time
+            StartCoroutine(DisableMovement());
+        }
+        else
+        {
+            this.gameObject.transform.Translate(other.GetContact(0).normal*Knockback_Distance);
+        }
+    }
+
+    //Disable the sub's movement for a short period of time when get hit.
+     IEnumerator DisableMovement()
+     {
+        CanMove=false;
+        CanControl=false;
+        yield return new WaitForSeconds(Knockback_Timer);
+        CanMove=true;
+        CanControl=true;
+     }
+
+     public void ReduceSubHP(int amount)
+     {
+        Sub_HP-=amount;
+        if(Sub_HP<=0)
+        {
+            Destroy(this.gameObject);
+            Debug.Log("Game Over");
+        }
+     }
 }
