@@ -47,7 +47,7 @@ public class BatScript : MonoBehaviour
         {
             connectedCell = collision.gameObject;
             PowerManager.EnablePoweredState(connectedCell.GetComponent<CellSlotScript>().slotType,this);
-            grabbed = false;
+/*            grabbed = false;*/
             connected = true;
         }
     }
@@ -57,7 +57,6 @@ public class BatScript : MonoBehaviour
         {
             if (connectedCell.GetComponent<CellSlotScript>().slotType == "Charge")
             {
-                print("break");
                 PowerManager.chargerBattery = null;
             }
             connectedCell.GetComponent<CellSlotScript>().batteryConnected = false;
